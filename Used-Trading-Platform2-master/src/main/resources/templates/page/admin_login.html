@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>武科大二手交易平台</title>
+    <script src="/js/jquery-1.3.2.min.js">
+    </script>
+    <script src="/js/login/init_login.js"></script>
+    <link rel="icon" href="/img/page_icon.png"/>
+    <link rel="stylesheet" th:href="@{/css/login_and_register/login_back.css}"/>
+    <link rel="stylesheet" href="/css/login_and_register/register_page.css"/>
+    <link rel="stylesheet" href="/css/login_and_register/confirm_password.css"/>
+    <link rel="stylesheet" href="/css/login_and_register/forget_password.css"/>
+    <style>
+        a.admin_login{
+            float: left;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<!--顶级的content是用来充当3D旋转的容器-->
+<div class=".stage">
+    <div class="content">
+        <!--登陆界面-->
+        <div class="login">
+            <div class="check_mark">
+                <div class="left_mark">
+                </div>
+                <div class="right_mark">
+                </div>
+            </div>
+            <form action="/admin_login.do" method="post">
+                <div class="login_form">
+
+                    <div class="login_username">
+                        <!--svg就很溜-->
+                        <svg class="login_icon" viewBox="0 0 20 20">
+                            <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8"></path>
+                        </svg>
+                        <input type="hidden" th:value="${token}" class="token" name="token"/>
+                        <input type="text" placeholder="管理员ID" class="input_username placeholder" name="id"/>
+                    </div>
+                    <div class="login_password">
+                        <svg class="password_icon" viewBox="0 0 20 20">
+                            <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0"></path>
+                        </svg>
+                        <input type="password" placeholder="密码" class="input_password placeholder" name="password"/>
+                    </div>
+                    <div class="login_button_div">
+                        <button class="login_button">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+</body>
+</html>

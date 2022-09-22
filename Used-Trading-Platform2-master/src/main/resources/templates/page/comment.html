@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>反馈与意见</title>
+    <style>
+        /*留言*/
+        .nav_publish_comment {
+            clear: both;
+            margin-left: 5%;
+            margin-top: 12%;
+        }
+        .nav_publish_comment span {
+            font-size: 1.3em;
+            color: slateblue;
+        }
+        /*输入框*/
+        .nav_publish_comment textarea {
+            width: 90%;
+            resize: none;
+            color: rgba(0,0,0,0.78);
+            border-radius: 5px;
+            border: 1px solid slateblue;
+            padding: 0.3em;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.3em;
+            height: 6.5em;
+        }
+        .nav_send_comment_button {
+            width: 10%;
+            padding: 0.3em;
+            font-size: 1em;
+            background-color: slateblue;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            margin-top: 2em;
+            margin-left: 75%;
+        }
+        .nav_one_comment {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.33);
+            width: 90%;
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+        .nav_one_comment .nav_username {
+            font-size: 1.3em;
+            margin-right: 30%;
+            color: rgba(0,0,0,0.82);
+        }
+        .nav_one_comment .nav_time {
+            margin-left: 20%;
+            font-size: 1.2em;
+            color: rgba(0,0,0,0.62);
+        }
+        .nav_one_comment .nav_content {
+            font-size: 1.3em;
+            text-indent: 2em;
+            color: rgba(0,0,0,0.62);
+        }
+        header {
+            width: 99%;
+            max-height: 80px;
+            background-color: blueviolet;
+            box-shadow: 5px 5px 10px #888888;
+            position: fixed;
+            top: 8px;
+            display: block;
+            z-index: 30;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    </style>
+    <script src="/js/home/header_model_js.js"></script>
+    <link rel="icon" href="/img/page_icon.png"/>
+    <link href="/css/home_page/header_and_nav.css" rel="stylesheet"/>
+</head>
+<body>
+<header th:include="header :: copy"></header>
+<div th:include="short_nav_show :: short_nav_show" class="short_nav_show"></div>
+<nav th:include="my_nav :: my_nav" class="my_nav"></nav>
+<div th:include="personal_nav :: personal_nav" class="personal_nav"></div>
+
+<div class="nav_publish_comment">
+    <span>反馈与意见：</span><br/><br/>
+    <input type="hidden" th:value="${token}" class="val_token"/>
+    <textarea class="nav_comment_textarea" maxlength="122" placeholder="本次最多填写122个字" name="nav_comment"></textarea>
+    <button class="nav_send_comment_button">发表</button>
+</div>
+<div class="nav_comment_content">
+    <div class="nav_one_comment" th:each="w:${wantContentBeans}">
+        <span class="nav_username" th:text="${w.name}">用户：1211110</span>
+        <span span class="time" th:with="time = ${w.modified}"
+              th:text="'发表于 '+${#dates.format(time,'yyyy-MM-dd HH:mm:ss')}">发表于：2022-09-12 22:22:22</span>
+        <p class="nav_content" th:text="${w.content}">123456789123</p>
+    </div>
+</div>
+</body>
+</html>
